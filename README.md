@@ -25,7 +25,7 @@ import { kinesisPlugin } from '@letstri/vue-kinesis';
 
 const app = createApp(App);
 
-app.use(VueKinesis);
+app.use(kinesisPlugin);
 
 app.mount('#app');
 ```
