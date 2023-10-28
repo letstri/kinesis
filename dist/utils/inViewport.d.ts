@@ -1,1 +1,2 @@
-export default function inViewport(element: any): boolean;
+import { ElementRect } from '../models';
+export declare const inViewport: (element: ElementRect) => boolean;

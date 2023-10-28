@@ -1,5 +1,6 @@
-export default function _default(shape: any): {
-    target: any;
-    x: any;
-    y: any;
+import { ElementRect } from '../models';
+export declare const scrollMovement: (target: ElementRect) => {
+    x: number;
+    y: number;
+    target: ElementRect;
 };

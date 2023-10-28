@@ -1,1 +1,1 @@
-export default function isTouch(): boolean;
+export declare const isTouch: () => boolean;

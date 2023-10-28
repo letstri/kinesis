@@ -1,138 +1,45 @@
-declare const _default: import("vue").DefineComponent<{
-    tag: {
-        type: StringConstructor;
-        default: string;
-    };
-    type: {
-        type: StringConstructor;
-        default: string;
-    };
-    transformOrigin: {
-        type: StringConstructor;
-        default: string;
-    };
-    originX: {
-        type: NumberConstructor;
-        default: number;
-    };
-    originY: {
-        type: NumberConstructor;
-        default: number;
-    };
-    strength: {
-        type: NumberConstructor;
-        default: number;
-    };
-    axis: {
-        type: StringConstructor;
-        default: null;
-    };
-    maxX: {
-        type: NumberConstructor;
-        default: null;
-    };
-    maxY: {
-        type: NumberConstructor;
-        default: null;
-    };
-    minX: {
-        type: NumberConstructor;
-        default: null;
-    };
-    minY: {
-        type: NumberConstructor;
-        default: null;
-    };
-    cycle: {
-        type: NumberConstructor;
-        default: number;
-    };
-}, any, any, {
-    transform(): any;
-    transformParameters(): {
-        transitionProperty: string;
-        transitionDuration: any;
-        transformOrigin: any;
-        transitionTimingFunction: any;
-    };
-    transitionDuration(): string;
-    transitionTimingFunction(): any;
-}, {
-    transformCalculation(): {
-        transform?: undefined;
-    } | {
-        transform: any;
-    };
-    strengthManager(): any;
-}, {
-    methods: {
-        transformSwitch(type: any, x: any, y: any, s: any): any;
-        translateMovement(x: any, y: any): string;
-        rotateMovement(x: any, y: any): string;
-        depthMovement(x: any, y: any, s: any): string;
-        scaleMovement(x: any, y: any): any;
-    };
-}, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    tag: {
-        type: StringConstructor;
-        default: string;
-    };
-    type: {
-        type: StringConstructor;
-        default: string;
-    };
-    transformOrigin: {
-        type: StringConstructor;
-        default: string;
-    };
-    originX: {
-        type: NumberConstructor;
-        default: number;
-    };
-    originY: {
-        type: NumberConstructor;
-        default: number;
-    };
-    strength: {
-        type: NumberConstructor;
-        default: number;
-    };
-    axis: {
-        type: StringConstructor;
-        default: null;
-    };
-    maxX: {
-        type: NumberConstructor;
-        default: null;
-    };
-    maxY: {
-        type: NumberConstructor;
-        default: null;
-    };
-    minX: {
-        type: NumberConstructor;
-        default: null;
-    };
-    minY: {
-        type: NumberConstructor;
-        default: null;
-    };
-    cycle: {
-        type: NumberConstructor;
-        default: number;
-    };
-}>>, {
-    tag: string;
-    type: string;
-    transformOrigin: string;
-    originX: number;
-    originY: number;
-    strength: number;
-    axis: string;
-    maxX: number;
-    maxY: number;
-    minX: number;
-    minY: number;
-    cycle: number;
-}, {}>;
+import { TransformType, Axis } from '../models';
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_TypePropsToRuntimeProps<{
+    tag?: string | undefined;
+    type?: TransformType | undefined;
+    transformOrigin?: import("csstype").Property.TransformOrigin<string | number> | undefined;
+    originX?: number | undefined;
+    originY?: number | undefined;
+    strength?: number | undefined;
+    axis?: Axis | null | undefined;
+    maxX?: number | null | undefined;
+    maxY?: number | null | undefined;
+    minX?: number | null | undefined;
+    minY?: number | null | undefined;
+    cycle?: number | undefined;
+}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
+    tag?: string | undefined;
+    type?: TransformType | undefined;
+    transformOrigin?: import("csstype").Property.TransformOrigin<string | number> | undefined;
+    originX?: number | undefined;
+    originY?: number | undefined;
+    strength?: number | undefined;
+    axis?: Axis | null | undefined;
+    maxX?: number | null | undefined;
+    maxY?: number | null | undefined;
+    minX?: number | null | undefined;
+    minY?: number | null | undefined;
+    cycle?: number | undefined;
+}>>>, {}, {}>, {
+    default?(_: {}): any;
+}>;
 export default _default;
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_TypePropsToRuntimeProps<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('vue').PropType<T[K]>;
+        required: true;
+    };
+};
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
+    };
+};

@@ -1,4 +1,7 @@
-export default function _default(element: any): {
-    x: any;
-    y: any;
+export declare const getCenter: (element: {
+    width: number;
+    height: number;
+}) => {
+    x: number;
+    y: number;
 };

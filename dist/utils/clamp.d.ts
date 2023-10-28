@@ -1,1 +1,1 @@
-export default function _default(value: any, min: any, max: any): any;
+export declare const clamp: (value: number, min: number | null, max: number | null) => number;

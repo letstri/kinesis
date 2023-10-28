@@ -1,131 +1,32 @@
-declare const _default: import("vue").DefineComponent<{
-    tag: {
-        type: StringConstructor;
-        default: string;
-    };
-    event: {
-        type: StringConstructor;
-        default: string;
-    };
-    active: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    duration: {
-        type: NumberConstructor;
-        default: number;
-    };
-    easing: {
-        type: StringConstructor;
-        default: string;
-    };
-    perspective: {
-        type: NumberConstructor;
-        default: number;
-    };
-}, any, {
-    shape: any;
-    isMoving: boolean;
-    leftOnce: boolean;
-    movement: {
-        x: number;
-        y: number;
-    };
-    eventMap: {
-        orientation: string;
-        scroll: string;
-        move: string | null;
-    };
-}, {
-    eventActions(): {
-        move: {
-            action: typeof mouseMovement;
-            condition: boolean;
-            type: string | null;
-        };
-        scroll: {
-            action: typeof scrollMovement;
-            condition: boolean;
-            type: string;
-        };
-        orientation: {
-            action: typeof orientationElement;
-            condition: boolean;
-            type: string;
-        };
-    };
-    style(): {
-        perspective: string;
-    };
-}, {
-    handleMovementStart(): void;
-    handleMovementStop(): void;
-    handleMovement: (...args: any[]) => void;
-    addEvents(): void;
-    removeEvents(): void;
-}, {
-    props: {
-        audio: {
-            type: StringConstructor;
-            required: boolean;
-        };
-        playAudio: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-    };
-    data(): {
-        analyser: null;
-        audioArray: null;
-        audioData: null;
-        audioRef: null;
-        wasPlayed: boolean;
-        isPlaying: boolean;
-    };
-    watch: {
-        audio(): void;
-        playAudio(play: any): void;
-    };
-    methods: {
-        play(): void;
-        stop(): void;
-        handleAudio(): void;
-        getSongData(): void;
-    };
-}, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    tag: {
-        type: StringConstructor;
-        default: string;
-    };
-    event: {
-        type: StringConstructor;
-        default: string;
-    };
-    active: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    duration: {
-        type: NumberConstructor;
-        default: number;
-    };
-    easing: {
-        type: StringConstructor;
-        default: string;
-    };
-    perspective: {
-        type: NumberConstructor;
-        default: number;
-    };
-}>>, {
-    event: string;
-    active: boolean;
-    tag: string;
-    duration: number;
-    easing: string;
-    perspective: number;
-}, {}>;
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_TypePropsToRuntimeProps<{
+    tag?: string | undefined;
+    event?: "scroll" | "move" | "orientation" | undefined;
+    disabled?: boolean | undefined;
+    duration?: number | undefined;
+    easing?: string | undefined;
+    perspective?: number | undefined;
+}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
+    tag?: string | undefined;
+    event?: "scroll" | "move" | "orientation" | undefined;
+    disabled?: boolean | undefined;
+    duration?: number | undefined;
+    easing?: string | undefined;
+    perspective?: number | undefined;
+}>>>, {}, {}>, {
+    default?(_: {}): any;
+}>;
 export default _default;
-import mouseMovement from '../utils/mouseMovement';
-import scrollMovement from '../utils/scrollMovement';
-import orientationElement from '../utils/orientationElement';
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_TypePropsToRuntimeProps<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('vue').PropType<T[K]>;
+        required: true;
+    };
+};
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
+    };
+};

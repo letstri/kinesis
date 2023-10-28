@@ -1,5 +1,9 @@
-export default function _default(action: any): {
-    target: any;
-    x: any;
-    y: any;
+import { ElementRect } from '../models';
+export declare const orientationElement: ({ event, target, }: {
+    target: ElementRect;
+    event: DeviceOrientationEvent;
+}) => {
+    x: number;
+    y: number;
+    target: ElementRect;
 };

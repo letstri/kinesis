@@ -1,176 +1,172 @@
 <template>
   <component
+    ref="container"
     :is="tag"
-    :style="style"
+    :style="{ perspective: `${perspective}px` }"
     @mousemove="handleMovement"
     @mouseenter="handleMovementStart"
     @mouseleave="handleMovementStop"
   >
     <slot />
-    <audio v-if="audio" ref="audio" type="audio/mpeg" @ended="stop">
-      <source :src="audio" />
-    </audio>
   </component>
 </template>
 
-<script>
-import mouseMovement from '../utils/mouseMovement';
-import scrollMovement from '../utils/scrollMovement';
-import orientationElement from '../utils/orientationElement';
-import inViewport from '../utils/inViewport';
-import isTouch from '../utils/isTouch';
-import getCoordinates from '../utils/getCoordinates';
-import throttle from '../utils/throttle';
-import audioMixin from '../mixins/audio_mixin';
+<script setup lang="ts">
+import {
+  ref,
+  provide,
+  reactive,
+  onMounted,
+  onBeforeUnmount,
+  readonly,
+  computed,
+} from 'vue';
+import throttle from 'lodash.throttle';
+import { type Context, type ElementRect } from '../models';
+import {
+  mouseMovement,
+  scrollMovement,
+  orientationElement,
+  inViewport,
+  isTouch,
+} from '../utils';
 
-export default {
-  name: 'KinesisContainer',
-  mixins: [audioMixin],
-  props: {
-    tag: {
-      type: String,
-      default: 'div',
-    },
-    event: {
-      type: String,
-      default: 'move',
-    },
-    active: {
-      type: Boolean,
-      default: true,
-    },
-    duration: {
-      type: Number,
-      default: 1000,
-    },
-    easing: {
-      type: String,
-      default: 'cubic-bezier(0.23, 1, 0.32, 1)',
-    },
-    perspective: {
-      type: Number,
-      default: 1000,
-    },
-  },
-  provide() {
-    const context = {};
-    const providedProps = [
-      'audioData',
-      'duration',
-      'easing',
-      'event',
-      'eventData',
-      'isMoving',
-      'movement',
-      'shape',
-    ];
+const {
+  tag = 'div',
+  event = 'move',
+  disabled = false,
+  duration = 1000,
+  easing = 'cubic-bezier(0.23, 1, 0.32, 1)',
+  perspective = 1000,
+} = defineProps<{
+  tag?: string;
+  event?: 'move' | 'scroll' | 'orientation';
+  disabled?: boolean;
+  duration?: number;
+  easing?: string;
+  perspective?: number;
+}>();
 
-    providedProps.forEach((prop) =>
-      Object.defineProperty(context, prop, {
-        enumerable: true,
-        get: () => this[prop],
-      })
-    );
-
-    return { context };
-  },
-  data() {
-    return {
-      shape: this.$el?.getBoundingClientRect(),
-      isMoving: false,
-      leftOnce: false,
-      movement: {
-        x: 0,
-        y: 0,
-      },
-      eventMap: {
-        orientation: 'deviceorientation',
-        scroll: 'scroll',
-        move: isTouch() ? 'deviceorientation' : null,
-      },
-    };
-  },
-  computed: {
-    eventActions() {
-      return {
-        move: {
-          action: mouseMovement,
-          condition: this.isMoving && !isTouch(),
-          type: isTouch() ? 'deviceorientation' : null,
-        },
-        scroll: {
-          action: scrollMovement,
-          condition: !!this.shape?.height,
-          type: 'scroll',
-        },
-        orientation: {
-          action: orientationElement,
-          condition: this.event === 'move' && isTouch(),
-          type: 'deviceorientation',
-        },
-      };
-    },
-    style() {
-      return { perspective: `${this.perspective}px` };
-    },
-  },
-  mounted() {
-    this.addEvents();
-  },
-  beforeDestroy() {
-    this.removeEvents();
-  },
-  methods: {
-    handleMovementStart() {
-      if (!this.active) return;
-      this.isMoving = true;
-    },
-    handleMovementStop() {
-      if (!this.active) return;
-      // fixes the specific case when mouseenter didn't trigger on page refresh
-      this.leftOnce = true;
-      this.isMoving = false;
-    },
-    // eslint-disable-next-line func-names
-    handleMovement: throttle(function (event) {
-      if (!this.active) return;
-      if (!this.isMoving && !this.leftOnce) {
-        // fixes the specific case when mouseenter didn't trigger on page refresh
-        this.handleMovementStart();
-      }
-
-      this.shape = this.$el.getBoundingClientRect();
-      const isInViewport = inViewport(this.shape);
-      const eventCondition = this.eventActions[this.event].condition;
-
-      const eventAction = this.eventActions[this.event].action;
-
-      if (isInViewport && eventCondition) {
-        this.movement = eventAction({
-          target: this.shape,
-          event,
-        });
-        this.eventData = getCoordinates(event.clientX, event.clientY);
-      }
-    }, 100),
-    addEvents() {
-      if (this.eventMap[this.event]) {
-        window.addEventListener(
-          this.eventMap[this.event],
-          this.handleMovement,
-          true
-        );
-      }
-    },
-    removeEvents() {
-      if (this.eventMap[this.event]) {
-        window.removeEventListener(
-          this.eventMap[this.event],
-          this.handleMovement,
-          true
-        );
-      }
-    },
-  },
+const container = ref<HTMLElement>();
+const shape = ref<ElementRect>({
+  width: 0,
+  height: 0,
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+});
+const isMoving = ref(false);
+const leftOnce = ref(false);
+const movement = ref({
+  x: 0,
+  y: 0,
+});
+const eventMap = {
+  orientation: 'deviceorientation' as const,
+  scroll: 'scroll' as const,
+  move: isTouch() ? ('deviceorientation' as const) : null,
 };
+const eventData = ref();
+
+const eventActions = computed(() => ({
+  move: {
+    action: (target: ElementRect, event: MouseEvent) =>
+      mouseMovement({ target, event }),
+    condition: isMoving.value && !isTouch(),
+    type: eventMap.move,
+  },
+  scroll: {
+    action: (target: ElementRect) => scrollMovement(target),
+    condition: !!shape.value?.height,
+    type: eventMap.scroll,
+  },
+  orientation: {
+    action: (target: ElementRect, event: MouseEvent) =>
+      orientationElement({
+        target,
+        event: event as unknown as DeviceOrientationEvent,
+      }),
+    condition: event === 'move' && isTouch(),
+    type: eventMap.orientation,
+  },
+}));
+
+const handleMovementStart = () => {
+  if (disabled) {
+    return;
+  }
+
+  isMoving.value = true;
+};
+const handleMovementStop = () => {
+  if (disabled) {
+    return;
+  }
+
+  // fixes the specific case when mouseenter didn't trigger on page refresh
+  leftOnce.value = true;
+  isMoving.value = false;
+};
+
+const handleMovement = throttle((e: Event) => {
+  if (disabled || !container.value) {
+    return;
+  }
+
+  const mouseEvent = e as MouseEvent;
+
+  if (!isMoving.value && !leftOnce.value) {
+    // fixes the specific case when mouseenter didn't trigger on page refresh
+    handleMovementStart();
+  }
+
+  shape.value = container.value.getBoundingClientRect();
+
+  const isInViewport = inViewport(shape.value);
+  const eventCondition = eventActions.value[event].condition;
+  const eventAction = eventActions.value[event].action;
+
+  if (isInViewport && eventCondition) {
+    movement.value = eventAction(shape.value, mouseEvent);
+
+    eventData.value = {
+      x: mouseEvent.clientX,
+      y: mouseEvent.clientY,
+    };
+  }
+}, 100);
+
+const addEvents = () => {
+  const e = eventMap[event];
+
+  if (e) {
+    window.addEventListener(e, handleMovement, true);
+  }
+};
+const removeEvents = () => {
+  const e = eventMap[event];
+
+  if (e) {
+    window.removeEventListener(e, handleMovement, true);
+  }
+};
+
+onMounted(addEvents);
+onBeforeUnmount(removeEvents);
+
+provide<Context>(
+  'context',
+  readonly(
+    reactive({
+      duration,
+      easing,
+      event,
+      eventData,
+      isMoving,
+      movement,
+      shape,
+    })
+  )
+);
 </script>
