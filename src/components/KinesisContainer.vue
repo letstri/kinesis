@@ -7,26 +7,21 @@
     @mouseleave="handleMovementStop"
   >
     <slot />
-    <audio
-      v-if="audio"
-      ref="audio"
-      type="audio/mpeg"
-      @ended="stop"
-    >
-      <source :src="audio">
+    <audio v-if="audio" ref="audio" type="audio/mpeg" @ended="stop">
+      <source :src="audio" />
     </audio>
   </component>
 </template>
 
 <script>
-import mouseMovement from '../utils/mouseMovement'
-import scrollMovement from '../utils/scrollMovement'
-import orientationElement from '../utils/orientationElement'
-import inViewport from '../utils/inViewport'
-import isTouch from '../utils/isTouch'
-import getCoordinates from '../utils/getCoordinates'
-import throttle from '../utils/throttle'
-import audioMixin from '../mixins/audio_mixin'
+import mouseMovement from '../utils/mouseMovement';
+import scrollMovement from '../utils/scrollMovement';
+import orientationElement from '../utils/orientationElement';
+import inViewport from '../utils/inViewport';
+import isTouch from '../utils/isTouch';
+import getCoordinates from '../utils/getCoordinates';
+import throttle from '../utils/throttle';
+import audioMixin from '../mixins/audio_mixin';
 
 export default {
   name: 'KinesisContainer',
@@ -58,7 +53,7 @@ export default {
     },
   },
   provide() {
-    const context = {}
+    const context = {};
     const providedProps = [
       'audioData',
       'duration',
@@ -68,14 +63,16 @@ export default {
       'isMoving',
       'movement',
       'shape',
-    ]
+    ];
 
-    providedProps.forEach((prop) => Object.defineProperty(context, prop, {
-      enumerable: true,
-      get: () => this[prop],
-    }))
+    providedProps.forEach((prop) =>
+      Object.defineProperty(context, prop, {
+        enumerable: true,
+        get: () => this[prop],
+      })
+    );
 
-    return { context, }
+    return { context };
   },
   data() {
     return {
@@ -91,7 +88,7 @@ export default {
         scroll: 'scroll',
         move: isTouch() ? 'deviceorientation' : null,
       },
-    }
+    };
   },
   computed: {
     eventActions() {
@@ -111,49 +108,49 @@ export default {
           condition: this.event === 'move' && isTouch(),
           type: 'deviceorientation',
         },
-      }
+      };
     },
     style() {
-      return { perspective: `${this.perspective}px`, }
+      return { perspective: `${this.perspective}px` };
     },
   },
   mounted() {
-    this.addEvents()
+    this.addEvents();
   },
   beforeDestroy() {
-    this.removeEvents()
+    this.removeEvents();
   },
   methods: {
     handleMovementStart() {
-      if (!this.active) return
-      this.isMoving = true
+      if (!this.active) return;
+      this.isMoving = true;
     },
     handleMovementStop() {
-      if (!this.active) return
+      if (!this.active) return;
       // fixes the specific case when mouseenter didn't trigger on page refresh
-      this.leftOnce = true
-      this.isMoving = false
+      this.leftOnce = true;
+      this.isMoving = false;
     },
     // eslint-disable-next-line func-names
     handleMovement: throttle(function (event) {
-      if (!this.active) return
+      if (!this.active) return;
       if (!this.isMoving && !this.leftOnce) {
         // fixes the specific case when mouseenter didn't trigger on page refresh
-        this.handleMovementStart()
+        this.handleMovementStart();
       }
 
-      this.shape = this.$el.getBoundingClientRect()
-      const isInViewport = inViewport(this.shape)
-      const eventCondition = this.eventActions[this.event].condition
+      this.shape = this.$el.getBoundingClientRect();
+      const isInViewport = inViewport(this.shape);
+      const eventCondition = this.eventActions[this.event].condition;
 
-      const eventAction = this.eventActions[this.event].action
+      const eventAction = this.eventActions[this.event].action;
 
       if (isInViewport && eventCondition) {
         this.movement = eventAction({
           target: this.shape,
           event,
-        })
-        this.eventData = getCoordinates(event.clientX, event.clientY)
+        });
+        this.eventData = getCoordinates(event.clientX, event.clientY);
       }
     }, 100),
     addEvents() {
@@ -161,8 +158,8 @@ export default {
         window.addEventListener(
           this.eventMap[this.event],
           this.handleMovement,
-          true,
-        )
+          true
+        );
       }
     },
     removeEvents() {
@@ -170,10 +167,10 @@ export default {
         window.removeEventListener(
           this.eventMap[this.event],
           this.handleMovement,
-          true,
-        )
+          true
+        );
       }
     },
   },
-}
+};
 </script>

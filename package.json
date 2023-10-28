@@ -1,60 +1,45 @@
 {
-  "name": "vue-kinesis",
+  "name": "@letstri/vue-kinesis",
   "version": "1.0.0",
   "description": "Easily create complexe interactive animations with Vue 3",
   "author": {
-    "name": "Amine Bouyarmane",
-    "email": "amine.bouyarmane@gmail.com"
+    "name": "Valerii Strilets",
+    "email": "valerii.strilets@gmail.com"
   },
   "scripts": {
-    "serve": "vue-cli-service serve dev/serve.js",
-    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
-    "lint": "vue-cli-service lint",
-    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
+    "dev": "vite",
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "types": "vue-tsc",
+    "preview": "vite preview"
   },
-  "main": "dist/vue-kinesis.ssr.js",
-  "module": "dist/vue-kinesis.esm.js",
-  "browser": "dist/vue-kinesis.esm.js",
-  "unpkg": "dist/vue-kinesis.min.js",
+  "type": "module",
   "files": [
-    "dist/*",
-    "src/**/*.vue"
+    "dist"
   ],
-  "dependencies": {},
+  "main": "./dist/vue-kinesis.umd.cjs",
+  "module": "./dist/vue-kinesis.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-kinesis.js",
+      "require": "./dist/vue-kinesis.umd.cjs"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "vue": "^3.3.7"
+  },
   "devDependencies": {
-    "@babel/core": "^7.14.5",
-    "@babel/preset-env": "^7.14.5",
-    "@rollup/plugin-alias": "^2.2.0",
-    "@rollup/plugin-commonjs": "^11.1.0",
-    "@rollup/plugin-replace": "^2.4.2",
-    "@vue/cli-plugin-babel": "^4.5.13",
-    "@vue/cli-plugin-eslint": "^4.5.13",
-    "@vue/cli-service": "^4.5.13",
-    "@vue/eslint-config-airbnb": "^5.0.2",
-    "babel-eslint": "^10.1.0",
-    "cross-env": "^7.0.2",
-    "eslint": "^6.7.2",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-vue": "^6.2.2",
-    "lint-staged": "^9.5.0",
-    "minimist": "^1.2.5",
-    "rollup": "^2.51.2",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-terser": "^5.3.0",
-    "rollup-plugin-vue": "^5.1.9",
-    "vue": "^2.6.14",
-    "vue-template-compiler": "^2.6.14"
+    "@types/node": "^20.8.9",
+    "@vitejs/plugin-vue": "^4.4.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0",
+    "vue-tsc": "^1.8.22"
   },
   "peerDependencies": {
     "vue": "^2.6.11"
   },
   "engines": {
-    "node": ">=10"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
+    "node": ">=18"
   },
   "keywords": [
     "frontend",
@@ -70,14 +55,8 @@
     "audio"
   ],
   "licence": "MIT",
-  "lint-staged": {
-    "*.{js,jsx,vue}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Aminerman/vue-kinesis"
+    "url": "https://github.com/letstri/vue-kinesis"
   }
 }
