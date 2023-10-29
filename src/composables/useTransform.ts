@@ -39,11 +39,13 @@ export const useTransform = (
     switch (type === 'scaleX' || type === 'scaleY' ? 'scale' : type) {
       case 'translate':
         return translateMovement(x, y);
+      case 'translate-inv':
+        return translateMovement(-x, -y);
       case 'rotate':
         return rotateMovement(x, y);
       case 'depth':
         return depthMovement(x, y, s);
-      case 'depth_inv':
+      case 'depth-inv':
         return depthMovement(-x, -y, s);
       case 'scale':
         return scaleMovement(x, y);

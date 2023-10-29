@@ -7,24 +7,24 @@ var H = "Expected a function", P = 0 / 0, Z = "[object Symbol]", _ = /^\s+|\s+$/
   return ae.Date.now();
 };
 function fe(e, n, t) {
-  var a, u, i, c, l, r, o = 0, s = !1, f = !1, g = !0;
+  var r, u, i, c, l, a, o = 0, s = !1, f = !1, g = !0;
   if (typeof e != "function")
     throw new TypeError(H);
   n = C(n) || 0, E(t) && (s = !!t.leading, f = "maxWait" in t, i = f ? le(C(t.maxWait) || 0, n) : i, g = "trailing" in t ? !!t.trailing : g);
   function M(d) {
-    var y = a, x = u;
-    return a = u = void 0, o = d, c = e.apply(x, y), c;
+    var y = r, x = u;
+    return r = u = void 0, o = d, c = e.apply(x, y), c;
   }
   function m(d) {
     return o = d, l = setTimeout(b, n), s ? M(d) : c;
   }
   function v(d) {
-    var y = d - r, x = d - o, S = n - y;
+    var y = d - a, x = d - o, S = n - y;
     return f ? ue(S, i - x) : S;
   }
   function h(d) {
-    var y = d - r, x = d - o;
-    return r === void 0 || y >= n || y < 0 || f && x >= i;
+    var y = d - a, x = d - o;
+    return a === void 0 || y >= n || y < 0 || f && x >= i;
   }
   function b() {
     var d = O();
@@ -33,32 +33,32 @@ function fe(e, n, t) {
     l = setTimeout(b, v(d));
   }
   function X(d) {
-    return l = void 0, g && a ? M(d) : (a = u = void 0, c);
+    return l = void 0, g && r ? M(d) : (r = u = void 0, c);
   }
   function F() {
-    l !== void 0 && clearTimeout(l), o = 0, a = r = u = l = void 0;
+    l !== void 0 && clearTimeout(l), o = 0, r = a = u = l = void 0;
   }
   function K() {
     return l === void 0 ? c : X(O());
   }
   function j() {
     var d = O(), y = h(d);
-    if (a = arguments, u = this, r = d, y) {
+    if (r = arguments, u = this, a = d, y) {
       if (l === void 0)
-        return m(r);
+        return m(a);
       if (f)
-        return l = setTimeout(b, n), M(r);
+        return l = setTimeout(b, n), M(a);
     }
     return l === void 0 && (l = setTimeout(b, n)), c;
   }
   return j.cancel = F, j.flush = K, j;
 }
 function de(e, n, t) {
-  var a = !0, u = !0;
+  var r = !0, u = !0;
   if (typeof e != "function")
     throw new TypeError(H);
-  return E(t) && (a = "leading" in t ? !!t.leading : a, u = "trailing" in t ? !!t.trailing : u), fe(e, n, {
-    leading: a,
+  return E(t) && (r = "leading" in t ? !!t.leading : r, u = "trailing" in t ? !!t.trailing : u), fe(e, n, {
+    leading: r,
     maxWait: n,
     trailing: u
   });
@@ -90,7 +90,7 @@ function C(e) {
 }
 var ge = de;
 const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ? n : e, ye = (e) => {
-  const { referencePosition: n, shape: t, event: a, cycles: u, strength: i } = e, c = a === "scroll" ? window.innerWidth : t.width, l = a === "scroll" ? window.innerHeight : t.height, r = (n.x - t.left) * (Math.PI * 2) / c, o = (n.y - t.top) * (Math.PI * 2) / l, s = c * Math.sin(r * u), f = l * Math.sin(o * u);
+  const { referencePosition: n, shape: t, event: r, cycles: u, strength: i } = e, c = r === "scroll" ? window.innerWidth : t.width, l = r === "scroll" ? window.innerHeight : t.height, a = (n.x - t.left) * (Math.PI * 2) / c, o = (n.y - t.top) * (Math.PI * 2) / l, s = c * Math.sin(a * u), f = l * Math.sin(o * u);
   return {
     x: s * i / (c / 2),
     y: f * i / (l / 2)
@@ -99,16 +99,16 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
   y: e,
   x: n,
   originX: t = 50,
-  originY: a = 50,
+  originY: r = 50,
   strength: u = 10,
   event: i = null,
   minX: c,
   minY: l,
-  maxX: r,
+  maxX: a,
   maxY: o
 }) => {
-  const s = k((n - t / 50) * u, c, r), f = k(
-    (e - (i === "scroll" ? -a / 2 : a) / 50) * u,
+  const s = k((n - t / 50) * u, c, a), f = k(
+    (e - (i === "scroll" ? -r / 2 : r) / 50) * u,
     l,
     o
   );
@@ -129,10 +129,10 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
   target: e,
   event: n
 }) => {
-  const t = n.clientX, a = n.clientY, u = t - e.left, i = a - e.top, c = we(e), l = u / c.x, r = i / c.y;
+  const t = n.clientX, r = n.clientY, u = t - e.left, i = r - e.top, c = we(e), l = u / c.x, a = i / c.y;
   return {
     x: l,
-    y: r,
+    y: a,
     target: e
   };
 }, Xe = ({
@@ -141,10 +141,10 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
 }) => {
   if (e.gamma === null || e.beta === null)
     return { x: 0, y: 0, target: n };
-  const t = e.gamma / 45, a = e.beta / 90;
+  const t = e.gamma / 45, r = e.beta / 90;
   return {
     x: t,
-    y: a,
+    y: r,
     target: n
   };
 }, Te = (e) => {
@@ -168,19 +168,19 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
       right: 0,
       bottom: 0,
       left: 0
-    }), a = w(!1), u = w(!1), i = w({
+    }), r = w(!1), u = w(!1), i = w({
       x: 0,
       y: 0
     }), c = {
       orientation: "deviceorientation",
       scroll: "scroll",
       move: I() ? "deviceorientation" : null
-    }, l = w(), r = Y(() => {
+    }, l = w(), a = Y(() => {
       var m;
       return {
         move: {
           action: (v, h) => xe({ target: v, event: h }),
-          condition: a.value && !I(),
+          condition: r.value && !I(),
           type: c.move
         },
         scroll: {
@@ -198,15 +198,15 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
         }
       };
     }), o = () => {
-      e.disabled || (a.value = !0);
+      e.disabled || (r.value = !0);
     }, s = () => {
-      e.disabled || (u.value = !0, a.value = !1);
+      e.disabled || (u.value = !0, r.value = !1);
     }, f = he((m) => {
       if (e.disabled || !n.value)
         return;
       const v = m;
-      !a.value && !u.value && o(), t.value = n.value.getBoundingClientRect();
-      const h = Me(t.value), b = r.value[e.event].condition, X = r.value[e.event].action;
+      !r.value && !u.value && o(), t.value = n.value.getBoundingClientRect();
+      const h = Me(t.value), b = a.value[e.event].condition, X = a.value[e.event].action;
       h && b && (i.value = X(t.value, v), l.value = {
         x: v.clientX,
         y: v.clientY
@@ -226,7 +226,7 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
           easing: e.easing,
           event: e.event,
           eventData: l,
-          isMoving: a,
+          isMoving: r,
           movement: i,
           shape: t
         })
@@ -246,22 +246,24 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
     }, 40, ["style", "onMousemove"]));
   }
 }), Ee = (e, n, t) => {
-  const a = (r, o) => `translate3d(${-r}px, ${-o}px, 0)`, u = (r, o) => {
+  const r = (a, o) => `translate3d(${-a}px, ${-o}px, 0)`, u = (a, o) => {
     let s = 0;
-    return e.value ? e.value === "x" ? s = 2 * r : e.value === "y" && (s = 2 * o) : s = r + o, `rotate3d(0,0,1,${s}deg)`;
-  }, i = (r, o, s) => `rotateX(${-o}deg) rotateY(${r}deg) translate3d(0,0,${s * 2}px)`, c = (r, o) => {
-    const s = Math.sign(n.value) * (Math.abs(r) + Math.abs(o)) / 10 + 1;
+    return e.value ? e.value === "x" ? s = 2 * a : e.value === "y" && (s = 2 * o) : s = a + o, `rotate3d(0,0,1,${s}deg)`;
+  }, i = (a, o, s) => `rotateX(${-o}deg) rotateY(${a}deg) translate3d(0,0,${s * 2}px)`, c = (a, o) => {
+    const s = Math.sign(n.value) * (Math.abs(a) + Math.abs(o)) / 10 + 1;
     return `scale3d(${t.value === "scaleX" || t.value === "scale" ? s : 1}, ${t.value === "scaleY" || t.value === "scale" ? s : 1}, 1)`;
   };
-  return { transformSwitch: (r, o, s, f) => {
-    switch (r === "scaleX" || r === "scaleY" ? "scale" : r) {
+  return { transformSwitch: (a, o, s, f) => {
+    switch (a === "scaleX" || a === "scaleY" ? "scale" : a) {
       case "translate":
-        return a(o, s);
+        return r(o, s);
+      case "translate-inv":
+        return r(-o, -s);
       case "rotate":
         return u(o, s);
       case "depth":
         return i(o, s, f);
-      case "depth_inv":
+      case "depth-inv":
         return i(-o, -s, f);
       case "scale":
         return c(o, s);
@@ -284,8 +286,8 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
     cycle: { default: 0 }
   },
   setup(e) {
-    const n = $(() => e.axis), t = $(() => e.strength), a = $(() => e.type), { transformSwitch: u } = Ee(n, t, a), i = J("context"), c = Y(
-      () => e.type === "depth" || e.type === "depth_inv" ? Math.abs(e.strength) : e.strength
+    const n = $(() => e.axis), t = $(() => e.strength), r = $(() => e.type), { transformSwitch: u } = Ee(n, t, r), i = J("context"), c = Y(
+      () => e.type === "depth" || e.type === "depth-inv" ? Math.abs(e.strength) : e.strength
     ), l = Y(() => {
       if (!i || !i.shape || !i.isMoving && i.event === "move")
         return {};
@@ -310,7 +312,7 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
       return i.event !== "scroll" ? (o = e.axis === "y" ? 0 : f, s = e.axis === "x" ? 0 : g) : i.event === "scroll" ? (o = e.axis === "x" ? g : 0, s = e.axis === "y" || !e.axis ? g : 0) : e.cycle > 0 && (o = e.axis === "x" ? f : 0, s = e.axis === "y" ? g : 0), {
         transform: u(e.type, o, s, e.strength)
       };
-    }), r = Y(() => ({
+    }), a = Y(() => ({
       transformOrigin: e.transformOrigin,
       willChange: "transform",
       transitionProperty: "transform",
@@ -320,7 +322,7 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
     return (o, s) => (p(), B(A(o.tag), {
       style: L({
         ...l.value,
-        ...r.value
+        ...a.value
       })
     }, {
       default: R(() => [

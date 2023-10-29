@@ -1,1 +1,1 @@
-export type TransformType = 'translate' | 'rotate' | 'scale' | 'scaleX' | 'scaleY' | 'depth' | 'depth_inv';
+export type TransformType = 'translate' | 'translate-inv' | 'rotate' | 'scale' | 'scaleX' | 'scaleY' | 'depth' | 'depth-inv';

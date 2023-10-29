@@ -1,7 +1,8 @@
 # vue-kinesis
 
-[![npm](https://img.shields.io/npm/v/@letstri/vue-kinesis.svg)](https://img.shields.io/npm/v/vue-kinesis.svg)
+Copied from the original [Vue Kinesis](https://img.shields.io/npm/v/vue-kinesis.svg) and updated to Vue 3.
 
+[![npm](https://img.shields.io/npm/v/@letstri/vue-kinesis.svg)](https://github.com/letstri/vue-kinesis)
 [![vue3](https://img.shields.io/badge/vue-3.x-brightgreen.svg)](https://vuejs.org/)
 
 Easy to use Vue 3 components for creating interactive animations

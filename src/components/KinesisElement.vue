@@ -40,7 +40,7 @@ const { transformSwitch } = useTransform(axisProp, strengthProp, typeProp);
 const context = inject<Context>('context');
 
 const strengthManager = computed(() =>
-  type === 'depth' || type === 'depth_inv' ? Math.abs(strength) : strength
+  type === 'depth' || type === 'depth-inv' ? Math.abs(strength) : strength
 );
 
 const transform = computed(() => {
