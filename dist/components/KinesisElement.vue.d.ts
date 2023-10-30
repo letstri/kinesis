@@ -11,7 +11,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     maxY?: number | null | undefined;
     minX?: number | null | undefined;
     minY?: number | null | undefined;
-    cycle?: number | undefined;
+    cycles?: number | undefined;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
     tag?: string | undefined;
     type?: TransformType | undefined;
@@ -24,7 +24,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     maxY?: number | null | undefined;
     minX?: number | null | undefined;
     minY?: number | null | undefined;
-    cycle?: number | undefined;
+    cycles?: number | undefined;
 }>>>, {}, {}>, {
     default?(_: {}): any;
 }>;

@@ -283,7 +283,7 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
     maxY: { default: null },
     minX: { default: null },
     minY: { default: null },
-    cycle: { default: 0 }
+    cycles: { default: 0 }
   },
   setup(e) {
     const n = $(() => e.axis), t = $(() => e.strength), r = $(() => e.type), { transformSwitch: u } = Ee(n, t, r), i = J("context"), c = Y(
@@ -292,7 +292,7 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
       if (!i || !i.shape || !i.isMoving && i.event === "move")
         return {};
       let o = 0, s = 0;
-      const { x: f, y: g } = e.cycle < 1 ? be({
+      const { x: f, y: g } = e.cycles < 1 ? be({
         ...i.movement,
         originX: e.originX,
         originY: e.originY,
@@ -306,10 +306,10 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
         referencePosition: i.event === "scroll" ? { x: 0, y: 0 } : i.eventData,
         shape: i.shape,
         event: i.event,
-        cycles: e.cycle,
+        cycles: e.cycles,
         strength: c.value
       });
-      return i.event !== "scroll" ? (o = e.axis === "y" ? 0 : f, s = e.axis === "x" ? 0 : g) : i.event === "scroll" ? (o = e.axis === "x" ? g : 0, s = e.axis === "y" || !e.axis ? g : 0) : e.cycle > 0 && (o = e.axis === "x" ? f : 0, s = e.axis === "y" ? g : 0), {
+      return i.event !== "scroll" ? (o = e.axis === "y" ? 0 : f, s = e.axis === "x" ? 0 : g) : i.event === "scroll" ? (o = e.axis === "x" ? g : 0, s = e.axis === "y" || !e.axis ? g : 0) : e.cycles > 0 && (o = e.axis === "x" ? f : 0, s = e.axis === "y" ? g : 0), {
         transform: u(e.type, o, s, e.strength)
       };
     }), a = Y(() => ({

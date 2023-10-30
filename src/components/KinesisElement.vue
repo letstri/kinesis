@@ -16,7 +16,7 @@ const {
   maxY = null,
   minX = null,
   minY = null,
-  cycle = 0,
+  cycles = 0,
 } = defineProps<{
   tag?: string;
   type?: TransformType;
@@ -29,7 +29,7 @@ const {
   maxY?: number | null;
   minX?: number | null;
   minY?: number | null;
-  cycle?: number;
+  cycles?: number;
 }>();
 
 const axisProp = toRef(() => axis);
@@ -56,7 +56,7 @@ const transform = computed(() => {
   let movementY = 0;
 
   const { x, y } =
-    cycle < 1
+    cycles < 1
       ? elementMovement({
           ...context.movement,
           originX,
@@ -73,7 +73,7 @@ const transform = computed(() => {
             context.event === 'scroll' ? { x: 0, y: 0 } : context.eventData,
           shape: context.shape,
           event: context.event,
-          cycles: cycle,
+          cycles,
           strength: strengthManager.value,
         });
 
@@ -83,7 +83,7 @@ const transform = computed(() => {
   } else if (context.event === 'scroll') {
     movementX = axis === 'x' ? y : 0;
     movementY = axis === 'y' || !axis ? y : 0;
-  } else if (cycle > 0) {
+  } else if (cycles > 0) {
     movementX = axis === 'x' ? x : 0;
     movementY = axis === 'y' ? y : 0;
   }
