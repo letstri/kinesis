@@ -1,4 +1,4 @@
-import { ElementRect } from '../models';
+import { type ElementRect } from '../models';
 export declare const scrollMovement: (target: ElementRect) => {
     x: number;
     y: number;

@@ -1,156 +1,153 @@
-import { defineComponent as W, ref as w, computed as Y, onMounted as N, onBeforeUnmount as V, provide as z, readonly as G, reactive as U, openBlock as B, createBlock as A, resolveDynamicComponent as L, normalizeStyle as R, unref as q, withCtx as p, renderSlot as D, toRef as $, inject as J } from "vue";
+import { defineComponent as A, ref as w, watch as L, computed as X, onMounted as P, onBeforeUnmount as G, provide as U, readonly as q, reactive as J, openBlock as R, createBlock as D, resolveDynamicComponent as H, normalizeStyle as F, unref as Q, withCtx as K, renderSlot as N, toRef as O, inject as Z } from "vue";
 var T = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Q(e) {
+function p(e) {
   return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
 }
-var H = "Expected a function", P = 0 / 0, Z = "[object Symbol]", _ = /^\s+|\s+$/g, ee = /^[-+]0x[0-9a-f]+$/i, te = /^0b[01]+$/i, ne = /^0o[0-7]+$/i, ie = parseInt, oe = typeof T == "object" && T && T.Object === Object && T, re = typeof self == "object" && self && self.Object === Object && self, ae = oe || re || Function("return this")(), se = Object.prototype, ce = se.toString, le = Math.max, ue = Math.min, O = function() {
-  return ae.Date.now();
+var V = "Expected a function", k = 0 / 0, _ = "[object Symbol]", ee = /^\s+|\s+$/g, te = /^[-+]0x[0-9a-f]+$/i, ne = /^0b[01]+$/i, ie = /^0o[0-7]+$/i, oe = parseInt, re = typeof T == "object" && T && T.Object === Object && T, ae = typeof self == "object" && self && self.Object === Object && self, se = re || ae || Function("return this")(), le = Object.prototype, ce = le.toString, ue = Math.max, fe = Math.min, I = function() {
+  return se.Date.now();
 };
-function fe(e, n, t) {
-  var r, u, i, c, l, a, o = 0, s = !1, f = !1, g = !0;
+function de(e, t, n) {
+  var r, l, f, i, c, a, s = 0, o = !1, u = !1, g = !0;
   if (typeof e != "function")
-    throw new TypeError(H);
-  n = C(n) || 0, E(t) && (s = !!t.leading, f = "maxWait" in t, i = f ? le(C(t.maxWait) || 0, n) : i, g = "trailing" in t ? !!t.trailing : g);
-  function M(d) {
-    var y = r, x = u;
-    return r = u = void 0, o = d, c = e.apply(x, y), c;
+    throw new TypeError(V);
+  t = W(t) || 0, Y(n) && (o = !!n.leading, u = "maxWait" in n, f = u ? ue(W(n.maxWait) || 0, t) : f, g = "trailing" in n ? !!n.trailing : g);
+  function h(d) {
+    var b = r, x = l;
+    return r = l = void 0, s = d, i = e.apply(x, b), i;
   }
-  function m(d) {
-    return o = d, l = setTimeout(b, n), s ? M(d) : c;
+  function E(d) {
+    return s = d, c = setTimeout(y, t), o ? h(d) : i;
   }
   function v(d) {
-    var y = d - a, x = d - o, S = n - y;
-    return f ? ue(S, i - x) : S;
+    var b = d - a, x = d - s, C = t - b;
+    return u ? fe(C, f - x) : C;
   }
-  function h(d) {
-    var y = d - a, x = d - o;
-    return a === void 0 || y >= n || y < 0 || f && x >= i;
+  function m(d) {
+    var b = d - a, x = d - s;
+    return a === void 0 || b >= t || b < 0 || u && x >= f;
   }
-  function b() {
-    var d = O();
-    if (h(d))
-      return X(d);
-    l = setTimeout(b, v(d));
+  function y() {
+    var d = I();
+    if (m(d))
+      return M(d);
+    c = setTimeout(y, v(d));
   }
-  function X(d) {
-    return l = void 0, g && r ? M(d) : (r = u = void 0, c);
-  }
-  function F() {
-    l !== void 0 && clearTimeout(l), o = 0, r = a = u = l = void 0;
-  }
-  function K() {
-    return l === void 0 ? c : X(O());
+  function M(d) {
+    return c = void 0, g && r ? h(d) : (r = l = void 0, i);
   }
   function j() {
-    var d = O(), y = h(d);
-    if (r = arguments, u = this, a = d, y) {
-      if (l === void 0)
-        return m(a);
-      if (f)
-        return l = setTimeout(b, n), M(a);
-    }
-    return l === void 0 && (l = setTimeout(b, n)), c;
+    c !== void 0 && clearTimeout(c), s = 0, r = a = l = c = void 0;
   }
-  return j.cancel = F, j.flush = K, j;
+  function z() {
+    return c === void 0 ? i : M(I());
+  }
+  function $() {
+    var d = I(), b = m(d);
+    if (r = arguments, l = this, a = d, b) {
+      if (c === void 0)
+        return E(a);
+      if (u)
+        return c = setTimeout(y, t), h(a);
+    }
+    return c === void 0 && (c = setTimeout(y, t)), i;
+  }
+  return $.cancel = j, $.flush = z, $;
 }
-function de(e, n, t) {
-  var r = !0, u = !0;
+function ve(e, t, n) {
+  var r = !0, l = !0;
   if (typeof e != "function")
-    throw new TypeError(H);
-  return E(t) && (r = "leading" in t ? !!t.leading : r, u = "trailing" in t ? !!t.trailing : u), fe(e, n, {
+    throw new TypeError(V);
+  return Y(n) && (r = "leading" in n ? !!n.leading : r, l = "trailing" in n ? !!n.trailing : l), de(e, t, {
     leading: r,
-    maxWait: n,
-    trailing: u
+    maxWait: t,
+    trailing: l
   });
 }
-function E(e) {
-  var n = typeof e;
-  return !!e && (n == "object" || n == "function");
+function Y(e) {
+  var t = typeof e;
+  return !!e && (t == "object" || t == "function");
 }
 function me(e) {
   return !!e && typeof e == "object";
 }
-function ve(e) {
-  return typeof e == "symbol" || me(e) && ce.call(e) == Z;
+function ge(e) {
+  return typeof e == "symbol" || me(e) && ce.call(e) == _;
 }
-function C(e) {
+function W(e) {
   if (typeof e == "number")
     return e;
-  if (ve(e))
-    return P;
-  if (E(e)) {
-    var n = typeof e.valueOf == "function" ? e.valueOf() : e;
-    e = E(n) ? n + "" : n;
+  if (ge(e))
+    return k;
+  if (Y(e)) {
+    var t = typeof e.valueOf == "function" ? e.valueOf() : e;
+    e = Y(t) ? t + "" : t;
   }
   if (typeof e != "string")
     return e === 0 ? e : +e;
-  e = e.replace(_, "");
-  var t = te.test(e);
-  return t || ne.test(e) ? ie(e.slice(2), t ? 2 : 8) : ee.test(e) ? P : +e;
+  e = e.replace(ee, "");
+  var n = ne.test(e);
+  return n || ie.test(e) ? oe(e.slice(2), n ? 2 : 8) : te.test(e) ? k : +e;
 }
-var ge = de;
-const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ? n : e, ye = (e) => {
-  const { referencePosition: n, shape: t, event: r, cycles: u, strength: i } = e, c = r === "scroll" ? window.innerWidth : t.width, l = r === "scroll" ? window.innerHeight : t.height, a = (n.x - t.left) * (Math.PI * 2) / c, o = (n.y - t.top) * (Math.PI * 2) / l, s = c * Math.sin(a * u), f = l * Math.sin(o * u);
+var he = ve;
+const ye = /* @__PURE__ */ p(he), B = (e, t, n) => n && e > n ? n : t && e < t ? t : e, be = (e) => {
+  const { referencePosition: t, shape: n, event: r, cycles: l, strength: f } = e, i = r === "scroll" ? window.innerWidth : n.width, c = r === "scroll" ? window.innerHeight : n.height, a = (t.x - n.left) * (Math.PI * 2) / i, s = (t.y - n.top) * (Math.PI * 2) / c, o = i * Math.sin(a * l), u = c * Math.sin(s * l);
   return {
-    x: s * i / (c / 2),
-    y: f * i / (l / 2)
+    x: o * f / (i / 2),
+    y: u * f / (c / 2)
   };
-}, be = ({
+}, we = ({
   y: e,
-  x: n,
-  originX: t = 50,
+  x: t,
+  originX: n = 50,
   originY: r = 50,
-  strength: u = 10,
-  event: i = null,
-  minX: c,
-  minY: l,
+  strength: l = 10,
+  event: f = null,
+  minX: i,
+  minY: c,
   maxX: a,
-  maxY: o
+  maxY: s
 }) => {
-  const s = k((n - t / 50) * u, c, a), f = k(
-    (e - (i === "scroll" ? -r / 2 : r) / 50) * u,
-    l,
-    o
+  const o = B((t - n / 50) * l, i, a), u = B(
+    (e - (f === "scroll" ? -r / 2 : r) / 50) * l,
+    c,
+    s
   );
   return {
-    x: s,
-    y: f
+    x: o,
+    y: u
   };
-}, we = (e) => ({
+}, xe = (e) => ({
   x: e ? e.width / 2 : 0,
   y: e ? e.height / 2 : 0
-}), Me = (e) => e.bottom >= 0 && e.right >= 0 && e.top <= (window.innerHeight || document.documentElement.clientHeight) && e.left <= (window.innerWidth || document.documentElement.clientWidth), I = () => {
+}), Me = (e) => e.bottom >= 0 && e.right >= 0 && e.top <= (window.innerHeight || document.documentElement.clientHeight) && e.left <= (window.innerWidth || document.documentElement.clientWidth), S = () => {
   try {
     return /Mobi|Android/i.test(navigator.userAgent);
   } catch {
     return !0;
   }
-}, xe = ({
-  target: e,
-  event: n
-}) => {
-  const t = n.clientX, r = n.clientY, u = t - e.left, i = r - e.top, c = we(e), l = u / c.x, a = i / c.y;
+}, Te = ({ target: e, event: t }) => {
+  const n = t.clientX, r = t.clientY, l = n - e.left, f = r - e.top, i = xe(e), c = l / i.x, a = f / i.y;
   return {
-    x: l,
+    x: c,
     y: a,
     target: e
   };
 }, Xe = ({
   event: e,
-  target: n
+  target: t
 }) => {
   if (e.gamma === null || e.beta === null)
-    return { x: 0, y: 0, target: n };
-  const t = e.gamma / 45, r = e.beta / 90;
+    return { x: 0, y: 0, target: t };
+  const n = e.gamma / 45, r = e.beta / 90;
   return {
-    x: t,
+    x: n,
     y: r,
-    target: n
+    target: t
   };
-}, Te = (e) => {
-  const n = (e.left - window.innerWidth) / (e.width + window.innerWidth), t = (e.top - window.innerHeight) / (e.height + window.innerHeight);
-  return { x: n, y: t, target: e };
-}, Ye = /* @__PURE__ */ W({
+}, Ye = (e) => {
+  const t = (e.left - window.innerWidth) / (e.width + window.innerWidth), n = (e.top - window.innerHeight) / (e.height + window.innerHeight);
+  return { x: t, y: n, target: e };
+}, Ee = /* @__PURE__ */ A({
   __name: "KinesisContainer",
   props: {
     tag: { default: "div" },
@@ -161,115 +158,124 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
     perspective: { default: 1e3 }
   },
   setup(e) {
-    const n = w(), t = w({
+    const t = w("div"), n = w(), r = w({
       width: 0,
       height: 0,
       top: 0,
       right: 0,
       bottom: 0,
       left: 0
-    }), r = w(!1), u = w(!1), i = w({
+    }), l = w(!1), f = w(!1), i = w({
       x: 0,
       y: 0
     }), c = {
       orientation: "deviceorientation",
       scroll: "scroll",
-      move: I() ? "deviceorientation" : null
-    }, l = w(), a = Y(() => {
-      var m;
+      move: S() ? "deviceorientation" : null
+    }, a = w();
+    L(
+      () => e.tag,
+      () => {
+        t.value = e.tag;
+      }
+    );
+    const s = X(() => {
+      var v;
       return {
         move: {
-          action: (v, h) => xe({ target: v, event: h }),
-          condition: r.value && !I(),
+          action: (m, y) => Te({ target: m, event: y }),
+          condition: l.value && !S(),
           type: c.move
         },
         scroll: {
-          action: (v) => Te(v),
-          condition: !!((m = t.value) != null && m.height),
+          action: (m) => Ye(m),
+          condition: !!((v = r.value) != null && v.height),
           type: c.scroll
         },
         orientation: {
-          action: (v, h) => Xe({
-            target: v,
-            event: h
+          action: (m, y) => Xe({
+            target: m,
+            event: y
           }),
-          condition: e.event === "move" && I(),
+          condition: e.event === "move" && S(),
           type: c.orientation
         }
       };
     }), o = () => {
-      e.disabled || (r.value = !0);
-    }, s = () => {
-      e.disabled || (u.value = !0, r.value = !1);
-    }, f = he((m) => {
+      e.disabled || (l.value = !0);
+    }, u = () => {
+      e.disabled || (f.value = !0, l.value = !1);
+    }, g = ye((v) => {
       if (e.disabled || !n.value)
         return;
-      const v = m;
-      !r.value && !u.value && o(), t.value = n.value.getBoundingClientRect();
-      const h = Me(t.value), b = a.value[e.event].condition, X = a.value[e.event].action;
-      h && b && (i.value = X(t.value, v), l.value = {
-        x: v.clientX,
-        y: v.clientY
+      const m = v;
+      !l.value && !f.value && o(), r.value = n.value.getBoundingClientRect();
+      const y = Me(r.value), M = s.value[e.event].condition, j = s.value[e.event].action;
+      y && M && (i.value = j(r.value, m), a.value = {
+        x: m.clientX,
+        y: m.clientY
       });
-    }, 100), g = () => {
-      const m = c[e.event];
-      m && window.addEventListener(m, f, !0);
-    }, M = () => {
-      const m = c[e.event];
-      m && window.removeEventListener(m, f, !0);
+    }, 100), h = () => {
+      const v = c[e.event];
+      v && window.addEventListener(v, g, !0);
+    }, E = () => {
+      const v = c[e.event];
+      v && window.removeEventListener(v, g, !0);
     };
-    return N(g), V(M), z(
+    return P(() => {
+      t.value = e.tag;
+    }), P(h), G(E), U(
       "context",
-      G(
-        U({
+      q(
+        J({
           duration: e.duration,
           easing: e.easing,
           event: e.event,
-          eventData: l,
-          isMoving: r,
+          eventData: a,
+          isMoving: l,
           movement: i,
-          shape: t
+          shape: r
         })
       )
-    ), (m, v) => (B(), A(L(m.tag), {
+    ), (v, m) => (R(), D(H(t.value), {
       ref_key: "container",
       ref: n,
-      style: R({ perspective: `${m.perspective}px` }),
-      onMousemove: q(f),
+      style: F({ perspective: `${v.perspective}px` }),
+      onMousemove: Q(g),
       onMouseenter: o,
-      onMouseleave: s
+      onMouseleave: u
     }, {
-      default: p(() => [
-        D(m.$slots, "default")
+      default: K(() => [
+        N(v.$slots, "default")
       ]),
       _: 3
     }, 40, ["style", "onMousemove"]));
   }
-}), Ee = (e, n, t) => {
-  const r = (a, o) => `translate3d(${-a}px, ${-o}px, 0)`, u = (a, o) => {
-    let s = 0;
-    return e.value ? e.value === "x" ? s = 2 * a : e.value === "y" && (s = 2 * o) : s = a + o, `rotate3d(0,0,1,${s}deg)`;
-  }, i = (a, o, s) => `rotateX(${-o}deg) rotateY(${a}deg) translate3d(0,0,${s * 2}px)`, c = (a, o) => {
-    const s = Math.sign(n.value) * (Math.abs(a) + Math.abs(o)) / 10 + 1;
-    return `scale3d(${t.value === "scaleX" || t.value === "scale" ? s : 1}, ${t.value === "scaleY" || t.value === "scale" ? s : 1}, 1)`;
+}), je = (e, t, n) => {
+  const r = (a, s) => `translate3d(${-a}px, ${-s}px, 0)`, l = (a, s) => {
+    let o = 0;
+    return e.value ? e.value === "x" ? o = 2 * a : e.value === "y" && (o = 2 * s) : o = a + s, `rotate3d(0,0,1,${o}deg)`;
+  }, f = (a, s, o) => `rotateX(${-s}deg) rotateY(${a}deg) translate3d(0,0,${o * 2}px)`, i = (a, s) => {
+    const o = Math.sign(t.value) * (Math.abs(a) + Math.abs(s)) / 10 + 1;
+    return `scale3d(${n.value === "scaleX" || n.value === "scale" ? o : 1}, ${n.value === "scaleY" || n.value === "scale" ? o : 1}, 1)`;
   };
-  return { transformSwitch: (a, o, s, f) => {
+  return { transformSwitch: (a, s, o, u) => {
     switch (a === "scaleX" || a === "scaleY" ? "scale" : a) {
       case "translate":
-        return r(o, s);
+        return r(s, o);
       case "translate-inv":
-        return r(-o, -s);
+        return r(-s, -o);
       case "rotate":
-        return u(o, s);
+        return l(s, o);
       case "depth":
-        return i(o, s, f);
+        return f(s, o, u);
       case "depth-inv":
-        return i(-o, -s, f);
+        return f(-s, -o, u);
       case "scale":
-        return c(o, s);
+        return i(s, o);
     }
   } };
-}, je = /* @__PURE__ */ W({
+}, $e = /* @__PURE__ */ A({
   __name: "KinesisElement",
   props: {
     tag: { default: "div" },
@@ -286,13 +292,22 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
     cycles: { default: 0 }
   },
   setup(e) {
-    const n = $(() => e.axis), t = $(() => e.strength), r = $(() => e.type), { transformSwitch: u } = Ee(n, t, r), i = J("context"), c = Y(
+    const t = O(() => e.axis), n = O(() => e.strength), r = O(() => e.type), l = w("div");
+    L(
+      () => e.tag,
+      () => {
+        l.value = e.tag;
+      }
+    ), P(() => {
+      l.value = e.tag;
+    });
+    const { transformSwitch: f } = je(t, n, r), i = Z("context"), c = X(
       () => e.type === "depth" || e.type === "depth-inv" ? Math.abs(e.strength) : e.strength
-    ), l = Y(() => {
+    ), a = X(() => {
       if (!i || !i.shape || !i.isMoving && i.event === "move")
         return {};
-      let o = 0, s = 0;
-      const { x: f, y: g } = e.cycles < 1 ? be({
+      let o = 0, u = 0;
+      const { x: g, y: h } = e.cycles < 1 ? we({
         ...i.movement,
         originX: e.originX,
         originY: e.originY,
@@ -302,40 +317,40 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
         minY: e.minY,
         maxX: e.maxX,
         maxY: e.maxY
-      }) : ye({
+      }) : be({
         referencePosition: i.event === "scroll" ? { x: 0, y: 0 } : i.eventData,
         shape: i.shape,
         event: i.event,
         cycles: e.cycles,
         strength: c.value
       });
-      return i.event !== "scroll" ? (o = e.axis === "y" ? 0 : f, s = e.axis === "x" ? 0 : g) : i.event === "scroll" ? (o = e.axis === "x" ? g : 0, s = e.axis === "y" || !e.axis ? g : 0) : e.cycles > 0 && (o = e.axis === "x" ? f : 0, s = e.axis === "y" ? g : 0), {
-        transform: u(e.type, o, s, e.strength)
+      return i.event !== "scroll" ? (o = e.axis === "y" ? 0 : g, u = e.axis === "x" ? 0 : h) : i.event === "scroll" ? (o = e.axis === "x" ? h : 0, u = e.axis === "y" || !e.axis ? h : 0) : e.cycles > 0 && (o = e.axis === "x" ? g : 0, u = e.axis === "y" ? h : 0), {
+        transform: f(e.type, o, u, e.strength)
       };
-    }), a = Y(() => ({
+    }), s = X(() => ({
       transformOrigin: e.transformOrigin,
       willChange: "transform",
       transitionProperty: "transform",
       transitionDuration: `${(i == null ? void 0 : i.duration) ?? 0}ms`,
       transitionTimingFunction: (i == null ? void 0 : i.easing) ?? "linear"
     }));
-    return (o, s) => (B(), A(L(o.tag), {
-      style: R({
-        ...l.value,
-        ...a.value
+    return (o, u) => (R(), D(H(l.value), {
+      style: F({
+        ...a.value,
+        ...s.value
       })
     }, {
-      default: p(() => [
-        D(o.$slots, "default")
+      default: K(() => [
+        N(o.$slots, "default")
       ]),
       _: 3
     }, 8, ["style"]));
   }
-}), Oe = {
+}), Ie = {
   install(e) {
-    e.component("KinesisContainer", Ye), e.component("KinesisElement", je);
+    e.component("KinesisContainer", Ee), e.component("KinesisElement", $e);
   }
 };
 export {
-  Oe as kinesisPlugin
+  Ie as kinesisPlugin
 };

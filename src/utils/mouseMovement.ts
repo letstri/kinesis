@@ -1,13 +1,7 @@
-import { ElementRect } from '../models';
+import { type ElementRect } from '../models';
 import { getCenter } from './getCenter';
 
-export const mouseMovement = ({
-  target,
-  event,
-}: {
-  target: ElementRect;
-  event: MouseEvent;
-}) => {
+export const mouseMovement = ({ target, event }: { target: ElementRect; event: MouseEvent }) => {
   const x = event.clientX;
   const y = event.clientY;
 

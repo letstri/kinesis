@@ -1,35 +1,8 @@
-<template>
-  <component
-    ref="container"
-    :is="tag"
-    :style="{ perspective: `${perspective}px` }"
-    @mousemove="handleMovement"
-    @mouseenter="handleMovementStart"
-    @mouseleave="handleMovementStop"
-  >
-    <slot />
-  </component>
-</template>
-
 <script setup lang="ts">
-import {
-  ref,
-  provide,
-  reactive,
-  onMounted,
-  onBeforeUnmount,
-  readonly,
-  computed,
-} from 'vue';
+import { ref, provide, reactive, onMounted, onBeforeUnmount, readonly, computed, watch } from 'vue';
 import throttle from 'lodash.throttle';
 import { type Context, type ElementRect } from '../models';
-import {
-  mouseMovement,
-  scrollMovement,
-  orientationElement,
-  inViewport,
-  isTouch,
-} from '../utils';
+import { mouseMovement, scrollMovement, orientationElement, inViewport, isTouch } from '../utils';
 
 const {
   tag = 'div',
@@ -47,6 +20,7 @@ const {
   perspective?: number;
 }>();
 
+const localTag = ref('div');
 const container = ref<HTMLElement>();
 const shape = ref<ElementRect>({
   width: 0,
@@ -69,10 +43,16 @@ const eventMap = {
 };
 const eventData = ref();
 
+watch(
+  () => tag,
+  () => {
+    localTag.value = tag;
+  },
+);
+
 const eventActions = computed(() => ({
   move: {
-    action: (target: ElementRect, event: MouseEvent) =>
-      mouseMovement({ target, event }),
+    action: (target: ElementRect, event: MouseEvent) => mouseMovement({ target, event }),
     condition: isMoving.value && !isTouch(),
     type: eventMap.move,
   },
@@ -152,6 +132,9 @@ const removeEvents = () => {
   }
 };
 
+onMounted(() => {
+  localTag.value = tag;
+});
 onMounted(addEvents);
 onBeforeUnmount(removeEvents);
 
@@ -166,7 +149,20 @@ provide<Context>(
       isMoving,
       movement,
       shape,
-    })
-  )
+    }),
+  ),
 );
 </script>
+
+<template>
+  <component
+    ref="container"
+    :is="localTag"
+    :style="{ perspective: `${perspective}px` }"
+    @mousemove="handleMovement"
+    @mouseenter="handleMovementStart"
+    @mouseleave="handleMovementStop"
+  >
+    <slot />
+  </component>
+</template>

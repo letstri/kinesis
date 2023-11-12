@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type CSSProperties, computed, inject, toRef } from 'vue';
+import { ref, type CSSProperties, computed, inject, toRef, onMounted, watch } from 'vue';
 import { type TransformType, type Axis, type Context } from '../models';
 import { elementMovement, cyclicMovement } from '../utils';
 import { useTransform } from '../composables';
@@ -36,19 +36,28 @@ const axisProp = toRef(() => axis);
 const strengthProp = toRef(() => strength);
 const typeProp = toRef(() => type);
 
+const localTag = ref('div');
+
+watch(
+  () => tag,
+  () => {
+    localTag.value = tag;
+  },
+);
+
+onMounted(() => {
+  localTag.value = tag;
+});
+
 const { transformSwitch } = useTransform(axisProp, strengthProp, typeProp);
 const context = inject<Context>('context');
 
 const strengthManager = computed(() =>
-  type === 'depth' || type === 'depth-inv' ? Math.abs(strength) : strength
+  type === 'depth' || type === 'depth-inv' ? Math.abs(strength) : strength,
 );
 
 const transform = computed(() => {
-  if (
-    !context ||
-    !context.shape ||
-    (!context.isMoving && context.event === 'move')
-  ) {
+  if (!context || !context.shape || (!context.isMoving && context.event === 'move')) {
     return {};
   }
 
@@ -69,8 +78,7 @@ const transform = computed(() => {
           maxY,
         })
       : cyclicMovement({
-          referencePosition:
-            context.event === 'scroll' ? { x: 0, y: 0 } : context.eventData,
+          referencePosition: context.event === 'scroll' ? { x: 0, y: 0 } : context.eventData,
           shape: context.shape,
           event: context.event,
           cycles,
@@ -103,7 +111,7 @@ const transformParameters = computed<CSSProperties>(() => ({
 
 <template>
   <component
-    :is="tag"
+    :is="localTag"
     :style="{
       ...transform,
       ...transformParameters,

@@ -1,4 +1,4 @@
-import { ElementRect } from '../models';
+import { type ElementRect } from '../models';
 export declare const orientationElement: ({ event, target, }: {
     target: ElementRect;
     event: DeviceOrientationEvent;
