@@ -1,5 +1,5 @@
-import { ActionEvent } from './ActionEvent';
-import { ElementRect } from './ElementRect';
+import { type ActionEvent } from './ActionEvent';
+import { type ElementRect } from './ElementRect';
 
 export interface Context {
   duration: number;

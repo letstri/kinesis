@@ -29,7 +29,7 @@ export const elementMovement = ({
   const movementY = clamp(
     (y - (event === 'scroll' ? -originY / 2 : originY) / 50) * strength,
     minY,
-    maxY
+    maxY,
   );
 
   return {

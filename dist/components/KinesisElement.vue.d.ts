@@ -1,4 +1,4 @@
-import { TransformType, Axis } from '../models';
+import { type TransformType, type Axis } from '../models';
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_TypePropsToRuntimeProps<{
     tag?: string | undefined;
     type?: TransformType | undefined;

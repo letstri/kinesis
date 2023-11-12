@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { CSSProperties, computed, inject, toRef } from 'vue';
-import { TransformType, Axis, Context } from '../models';
+import { type CSSProperties, computed, inject, toRef } from 'vue';
+import { type TransformType, type Axis, type Context } from '../models';
 import { elementMovement, cyclicMovement } from '../utils';
 import { useTransform } from '../composables';
 
