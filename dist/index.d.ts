@@ -1,4 +1,4 @@
-import { type App } from 'vue';
+import { type Plugin } from 'vue';
 import KinesisContainer from './components/KinesisContainer.vue';
 import KinesisElement from './components/KinesisElement.vue';
 declare module 'vue' {
@@ -7,5 +7,5 @@ declare module 'vue' {
         KinesisElement: typeof KinesisElement;
     }
 }
-declare const kinesisPlugin: (vue: App) => void;
+declare const kinesisPlugin: Plugin;
 export { kinesisPlugin };

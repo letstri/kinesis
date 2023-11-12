@@ -1,4 +1,4 @@
-import { defineComponent as W, ref as w, computed as Y, onMounted as N, onBeforeUnmount as V, provide as z, readonly as G, reactive as U, openBlock as p, createBlock as B, resolveDynamicComponent as A, normalizeStyle as L, unref as q, withCtx as R, renderSlot as D, toRef as $, inject as J } from "vue";
+import { defineComponent as W, ref as w, computed as Y, onMounted as N, onBeforeUnmount as V, provide as z, readonly as G, reactive as U, openBlock as B, createBlock as A, resolveDynamicComponent as L, normalizeStyle as R, unref as q, withCtx as p, renderSlot as D, toRef as $, inject as J } from "vue";
 var T = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function Q(e) {
   return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
@@ -231,15 +231,15 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
           shape: t
         })
       )
-    ), (m, v) => (p(), B(A(m.tag), {
+    ), (m, v) => (B(), A(L(m.tag), {
       ref_key: "container",
       ref: n,
-      style: L({ perspective: `${m.perspective}px` }),
+      style: R({ perspective: `${m.perspective}px` }),
       onMousemove: q(f),
       onMouseenter: o,
       onMouseleave: s
     }, {
-      default: R(() => [
+      default: p(() => [
         D(m.$slots, "default")
       ]),
       _: 3
@@ -319,20 +319,22 @@ const he = /* @__PURE__ */ Q(ge), k = (e, n, t) => t && e > t ? t : n && e < n ?
       transitionDuration: `${(i == null ? void 0 : i.duration) ?? 0}ms`,
       transitionTimingFunction: (i == null ? void 0 : i.easing) ?? "linear"
     }));
-    return (o, s) => (p(), B(A(o.tag), {
-      style: L({
+    return (o, s) => (B(), A(L(o.tag), {
+      style: R({
         ...l.value,
         ...a.value
       })
     }, {
-      default: R(() => [
+      default: p(() => [
         D(o.$slots, "default")
       ]),
       _: 3
     }, 8, ["style"]));
   }
-}), Oe = (e) => {
-  e.component("KinesisContainer", Ye), e.component("KinesisElement", je);
+}), Oe = {
+  install(e) {
+    e.component("KinesisContainer", Ye), e.component("KinesisElement", je);
+  }
 };
 export {
   Oe as kinesisPlugin

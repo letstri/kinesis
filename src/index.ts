@@ -1,4 +1,4 @@
-import { type App } from 'vue';
+import { type Plugin } from 'vue';
 import KinesisContainer from './components/KinesisContainer.vue';
 import KinesisElement from './components/KinesisElement.vue';
 
@@ -9,9 +9,11 @@ declare module 'vue' {
   }
 }
 
-const kinesisPlugin = (vue: App) => {
-  vue.component('KinesisContainer', KinesisContainer);
-  vue.component('KinesisElement', KinesisElement);
+const kinesisPlugin: Plugin = {
+  install(app) {
+    app.component('KinesisContainer', KinesisContainer);
+    app.component('KinesisElement', KinesisElement);
+  },
 };
 
 export { kinesisPlugin };
