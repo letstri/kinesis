@@ -1,7 +1,7 @@
 {
   "name": "@letstri/vue-kinesis",
   "version": "0.0.6",
-  "description": "Easily create complexe interactive animations with Vue 3",
+  "description": "Easy creation of complex interactive animation using Vue 3",
   "author": {
     "name": "Valerii Strilets",
     "email": "valerii.strilets@gmail.com"
