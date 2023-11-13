@@ -10,7 +10,6 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' },
     ],
-
     sidebar: [
       {
         text: 'Examples',
@@ -20,7 +19,6 @@ export default defineConfig({
         ],
       },
     ],
-
     socialLinks: [{ icon: 'github', link: 'https://github.com/letstri/vue-kinesis' }],
   },
 });
