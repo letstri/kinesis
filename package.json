@@ -1,7 +1,7 @@
 {
   "name": "@letstri/vue-kinesis",
   "version": "0.0.6",
-  "description": "Easy creation of complex interactive animation using Vue 3",
+  "description": "Easy creation of complex interactive animations",
   "author": {
     "name": "Valerii Strilets",
     "email": "valerii.strilets@gmail.com"
@@ -38,6 +38,7 @@
     "@vue/eslint-config-typescript": "^12.0.0",
     "eslint": "^8.53.0",
     "eslint-plugin-vue": "^9.18.1",
+    "sass": "^1.69.5",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
     "vitepress": "^1.0.0-rc.25",
@@ -50,16 +51,17 @@
     "node": ">=18"
   },
   "keywords": [
+    "ui",
     "frontend",
     "animation",
     "interaction",
     "vue",
-    "vue.js",
+    "vue 3",
+    "3d",
     "parallax",
     "mouse",
     "hover",
-    "scroll",
-    "gyroscope"
+    "scroll"
   ],
   "licence": "MIT",
   "repository": {
