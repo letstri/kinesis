@@ -16,3 +16,11 @@
     <img src="https://img.shields.io/badge/you_want-this-blue">
   </a>
 </p>
+
+## Installation
+
+Demo and installation instructions can be found at [kinesis.letstri.dev](https://kinesis.letstri.dev).
+
+## Author
+
+**Vue Kinesis** © [letstri](https://letstri.dev), Released under the [MIT](https://github.com/letstri/kinesis/blob/main/LICENSE) License.
