@@ -32,6 +32,7 @@ So easy to setup, just run the following command:
 
 ```js [Vue]
 // src/main.js
+import { createApp } from 'vue';
 import { kinesisPlugin } from '@letstri/vue-kinesis';
 
 const app = createApp(App);
