@@ -23,4 +23,4 @@ Demo and installation instructions can be found at [kinesis.letstri.dev](https:/
 
 ## Author
 
-**Vue Kinesis** © [letstri](https://letstri.dev), Released under the [MIT](https://github.com/letstri/kinesis/blob/main/LICENSE) License.
+© [letstri](https://letstri.dev), released under the [MIT](https://github.com/letstri/kinesis/blob/main/LICENSE) license.
