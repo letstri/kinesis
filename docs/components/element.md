@@ -1,6 +1,6 @@
-# KinesisContainer
+# KinesisElement
 
-KinesisContainer is a wrapper for KinesisElement components. You should use it to wrap all KinesisElement components.
+KinesisElement is a component that will react to the user's interactions.
 
 | Prop            |  Type  | Default Value | Description                                                                                                                              |
 | --------------- | :----: | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
