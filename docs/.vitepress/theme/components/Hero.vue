@@ -68,6 +68,7 @@ import { VPButton } from 'vitepress/theme';
   font-weight: 400;
   color: var(--vp-c-text-3);
   margin-bottom: 2rem;
+  padding: 0 1rem;
 }
 
 .trick {
@@ -83,12 +84,12 @@ import { VPButton } from 'vitepress/theme';
 }
 
 .element-1 {
-  top: 10vh;
+  top: 5vh;
   left: 10vw;
 }
 
 .element-2 {
-  top: 50vh;
+  top: 45vh;
   left: 15vw;
 
   @media (max-width: 550px) {
