@@ -2,6 +2,8 @@
 
 KinesisElement is a component that will react to the user's interactions.
 
+## Props
+
 | Prop            |  Type  | Default Value | Description                                                                                                                              |
 | --------------- | :----: | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | strength        | Number | 10            | Strength of the motion effect                                                                                                            |
