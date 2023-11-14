@@ -1,12 +1,13 @@
 {
   "name": "@letstri/kinesis",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "Easy creation of complex interactive animations",
   "author": {
     "name": "Valerii Strilets",
     "email": "valerii.strilets@gmail.com"
   },
+  "homepage": "https://kinesis.letstri.dev",
   "scripts": {
     "prepublish": "npm run build",
     "dev": "vite",
