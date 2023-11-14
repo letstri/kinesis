@@ -1,6 +1,6 @@
 {
   "name": "@letstri/kinesis",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "description": "Easy creation of complex interactive animations",
   "author": {

@@ -7,19 +7,19 @@ So easy to install, just run the following command:
 ::: code-group
 
 ```sh [npm]
-$ npm i @letstri/vue-kinesis
+$ npm i @letstri/kinesis
 ```
 
 ```sh [pnpm]
-$ pnpm i @letstri/vue-kinesis
+$ pnpm i @letstri/kinesis
 ```
 
 ```sh [yarn]
-$ yarn add @letstri/vue-kinesis
+$ yarn add @letstri/kinesis
 ```
 
 ```sh [bun]
-$ bun i @letstri/vue-kinesis
+$ bun i @letstri/kinesis
 ```
 
 :::
@@ -33,7 +33,7 @@ So easy to setup, just run the following command:
 ```js [Vue]
 // src/main.js
 import { createApp } from 'vue';
-import { kinesisPlugin } from '@letstri/vue-kinesis';
+import { kinesisPlugin } from '@letstri/kinesis';
 
 const app = createApp(App);
 
@@ -42,7 +42,7 @@ app.use(kinesisPlugin);
 
 ```js [Nuxt]
 // plugins/vue-kinesis.js
-import { kinesisPlugin } from '@letstri/vue-kinesis';
+import { kinesisPlugin } from '@letstri/kinesis';
 
 export default defineNuxtPlugin(({ vueApp }) => {
   vueApp.use(kinesisPlugin);
