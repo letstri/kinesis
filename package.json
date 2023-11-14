@@ -1,6 +1,6 @@
 {
-  "name": "@letstri/vue-kinesis",
-  "version": "0.0.6",
+  "name": "@letstri/kinesis",
+  "version": "0.0.1",
   "description": "Easy creation of complex interactive animations",
   "author": {
     "name": "Valerii Strilets",
