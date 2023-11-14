@@ -1,6 +1,7 @@
 {
   "name": "@letstri/kinesis",
   "version": "0.0.1",
+  "private": false,
   "description": "Easy creation of complex interactive animations",
   "author": {
     "name": "Valerii Strilets",
