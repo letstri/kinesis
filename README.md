@@ -6,7 +6,7 @@
   Based on the original <a href="https://github.com/Aminerman/vue-kinesis">Vue Kinesis</a>.<br/>
 </p>
 <p align="center">
-  <a href="https://github.com/letstri/kinesis">
+  <a href="https://www.npmjs.com/package/@letstri/kinesis">
     <img src="https://img.shields.io/npm/v/@letstri/kinesis.svg">
   </a>
   <a href="https://vuejs.org">
