@@ -41,7 +41,7 @@ app.use(kinesisPlugin);
 ```
 
 ```js [Nuxt]
-// plugins/vue-kinesis.js
+// plugins/kinesis.js
 import { kinesisPlugin } from '@letstri/kinesis';
 
 export default defineNuxtPlugin(({ vueApp }) => {
