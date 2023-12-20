@@ -166,8 +166,8 @@ const ye = /* @__PURE__ */ p(he), B = (e, t, n) => n && e > n ? n : t && e < t ?
       bottom: 0,
       left: 0
     }), l = w(!1), f = w(!1), i = w({
-      x: 0,
-      y: 0
+      x: 1,
+      y: 1
     }), c = {
       orientation: "deviceorientation",
       scroll: "scroll",

@@ -20,9 +20,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'vue-kinesis',
-      fileName: 'vue-kinesis',
-      formats: ['es', 'cjs', 'umd'],
+      name: 'kinesis',
+      fileName: 'kinesis',
+      formats: ['es', 'cjs', 'umd', 'iife'],
     },
     rollupOptions: {
       external: ['vue'],

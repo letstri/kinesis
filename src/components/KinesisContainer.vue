@@ -33,8 +33,8 @@ const shape = ref<ElementRect>({
 const isMoving = ref(false);
 const leftOnce = ref(false);
 const movement = ref({
-  x: 0,
-  y: 0,
+  x: 1,
+  y: 1,
 });
 const eventMap = {
   orientation: 'deviceorientation' as const,

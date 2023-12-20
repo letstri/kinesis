@@ -1,6 +1,6 @@
 {
   "name": "@letstri/kinesis",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Easy creation of complex interactive animations",
   "author": {
     "name": "Valerii Strilets",
@@ -20,12 +20,12 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/vue-kinesis.umd.cjs",
-  "module": "./dist/vue-kinesis.js",
+  "main": "./dist/kinesis.umd.cjs",
+  "module": "./dist/kinesis.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-kinesis.js",
-      "require": "./dist/vue-kinesis.umd.cjs"
+      "import": "./dist/kinesis.js",
+      "require": "./dist/kinesis.umd.cjs"
     }
   },
   "types": "./dist/index.d.ts",
