@@ -1,12 +1,10 @@
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_TypePropsToRuntimeProps<{
-    tag?: string | undefined;
     event?: "scroll" | "move" | "orientation" | undefined;
     disabled?: boolean | undefined;
     duration?: number | undefined;
     easing?: string | undefined;
     perspective?: number | undefined;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
-    tag?: string | undefined;
     event?: "scroll" | "move" | "orientation" | undefined;
     disabled?: boolean | undefined;
     duration?: number | undefined;

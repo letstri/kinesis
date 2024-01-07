@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { ref, provide, reactive, onMounted, onBeforeUnmount, readonly, computed, watch } from 'vue';
+import { ref, provide, reactive, onMounted, onBeforeUnmount, readonly, computed } from 'vue';
 import throttle from 'lodash.throttle';
 import { type Context, type ElementRect } from '../models';
 import { mouseMovement, scrollMovement, orientationElement, inViewport, isTouch } from '../utils';
 
 const {
-  tag = 'div',
   event = 'move',
   disabled = false,
   duration = 1000,
   easing = 'cubic-bezier(0.23, 1, 0.32, 1)',
   perspective = 1000,
 } = defineProps<{
-  tag?: string;
   event?: 'move' | 'scroll' | 'orientation';
   disabled?: boolean;
   duration?: number;
@@ -20,7 +18,6 @@ const {
   perspective?: number;
 }>();
 
-const localTag = ref('div');
 const container = ref<HTMLElement>();
 const shape = ref<ElementRect>({
   width: 0,
@@ -42,13 +39,6 @@ const eventMap = {
   move: isTouch() ? ('deviceorientation' as const) : null,
 };
 const eventData = ref();
-
-watch(
-  () => tag,
-  () => {
-    localTag.value = tag;
-  },
-);
 
 const eventActions = computed(() => ({
   move: {
@@ -132,9 +122,6 @@ const removeEvents = () => {
   }
 };
 
-onMounted(() => {
-  localTag.value = tag;
-});
 onMounted(addEvents);
 onBeforeUnmount(removeEvents);
 
@@ -155,14 +142,13 @@ provide<Context>(
 </script>
 
 <template>
-  <component
+  <div
     ref="container"
-    :is="localTag"
     :style="{ perspective: `${perspective}px` }"
     @mousemove="handleMovement"
     @mouseenter="handleMovementStart"
     @mouseleave="handleMovementStop"
   >
     <slot />
-  </component>
+  </div>
 </template>

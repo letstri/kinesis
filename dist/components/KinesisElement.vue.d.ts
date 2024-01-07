@@ -1,6 +1,5 @@
 import { type TransformType, type Axis } from '../models';
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_TypePropsToRuntimeProps<{
-    tag?: string | undefined;
     type?: TransformType | undefined;
     transformOrigin?: import("csstype").Property.TransformOrigin<string | number> | undefined;
     originX?: number | undefined;
@@ -13,7 +12,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     minY?: number | null | undefined;
     cycles?: number | undefined;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
-    tag?: string | undefined;
     type?: TransformType | undefined;
     transformOrigin?: import("csstype").Property.TransformOrigin<string | number> | undefined;
     originX?: number | undefined;

@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ref, type CSSProperties, computed, inject, toRef, onMounted, watch } from 'vue';
+import { type CSSProperties, computed, inject, toRef } from 'vue';
 import { type TransformType, type Axis, type Context } from '../models';
 import { elementMovement, cyclicMovement } from '../utils';
 import { useTransform } from '../composables';
 
 const {
-  tag = 'div',
   type = 'translate',
   transformOrigin = 'center',
   originX = 50,
@@ -18,7 +17,6 @@ const {
   minY = null,
   cycles = 0,
 } = defineProps<{
-  tag?: string;
   type?: TransformType;
   transformOrigin?: CSSProperties['transformOrigin'];
   originX?: number;
@@ -35,19 +33,6 @@ const {
 const axisProp = toRef(() => axis);
 const strengthProp = toRef(() => strength);
 const typeProp = toRef(() => type);
-
-const localTag = ref('div');
-
-watch(
-  () => tag,
-  () => {
-    localTag.value = tag;
-  },
-);
-
-onMounted(() => {
-  localTag.value = tag;
-});
 
 const { transformSwitch } = useTransform(axisProp, strengthProp, typeProp);
 const context = inject<Context>('context');
@@ -110,13 +95,12 @@ const transformParameters = computed<CSSProperties>(() => ({
 </script>
 
 <template>
-  <component
-    :is="localTag"
+  <div
     :style="{
       ...transform,
       ...transformParameters,
     }"
   >
     <slot />
-  </component>
+  </div>
 </template>
