@@ -8,7 +8,7 @@ const {
   disabled = false,
   duration = 1000,
   easing = 'cubic-bezier(0.23, 1, 0.32, 1)',
-  perspective = 1000,
+  perspective = 0,
 } = defineProps<{
   disabled?: boolean;
   duration?: number;

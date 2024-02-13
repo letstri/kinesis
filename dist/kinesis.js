@@ -133,7 +133,7 @@ const me = /* @__PURE__ */ U(de), k = (e, n, t) => t && e > t ? t : n && e < n ?
     disabled: { type: Boolean, default: !1 },
     duration: { default: 1e3 },
     easing: { default: "cubic-bezier(0.23, 1, 0.32, 1)" },
-    perspective: { default: 1e3 }
+    perspective: { default: 0 }
   },
   setup(e) {
     const n = M(), t = M({
