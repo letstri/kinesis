@@ -144,7 +144,7 @@ provide<Context>(
 <template>
   <div
     ref="container"
-    :style="{ perspective: `${perspective}px` }"
+    :style="perspective ? { perspective: `${perspective}px` } : undefined"
     @mousemove="handleMovement"
     @mouseenter="handleMovementStart"
     @mouseleave="handleMovementStop"

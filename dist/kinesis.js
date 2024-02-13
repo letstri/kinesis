@@ -1,30 +1,30 @@
-import { defineComponent as B, ref as w, computed as T, onMounted as K, onBeforeUnmount as N, provide as V, readonly as z, reactive as G, openBlock as A, createElementBlock as L, normalizeStyle as R, unref as P, renderSlot as H, toRef as $, inject as U } from "vue";
+import { defineComponent as B, ref as w, computed as T, onMounted as K, onBeforeUnmount as N, provide as V, readonly as z, reactive as G, openBlock as p, createElementBlock as A, normalizeStyle as L, unref as P, renderSlot as R, toRef as $, inject as U } from "vue";
 var E = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function q(e) {
   return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
 }
-var p = "Expected a function", C = 0 / 0, J = "[object Symbol]", Q = /^\s+|\s+$/g, Z = /^[-+]0x[0-9a-f]+$/i, _ = /^0b[01]+$/i, ee = /^0o[0-7]+$/i, te = parseInt, ne = typeof E == "object" && E && E.Object === Object && E, ie = typeof self == "object" && self && self.Object === Object && self, oe = ne || ie || Function("return this")(), re = Object.prototype, ae = re.toString, se = Math.max, ce = Math.min, O = function() {
+var H = "Expected a function", C = 0 / 0, J = "[object Symbol]", Q = /^\s+|\s+$/g, Z = /^[-+]0x[0-9a-f]+$/i, _ = /^0b[01]+$/i, ee = /^0o[0-7]+$/i, te = parseInt, ne = typeof E == "object" && E && E.Object === Object && E, ie = typeof self == "object" && self && self.Object === Object && self, oe = ne || ie || Function("return this")(), re = Object.prototype, ae = re.toString, se = Math.max, ce = Math.min, O = function() {
   return oe.Date.now();
 };
 function le(e, n, t) {
   var r, u, i, c, l, a, o = 0, s = !1, f = !1, g = !0;
   if (typeof e != "function")
-    throw new TypeError(p);
+    throw new TypeError(H);
   n = k(n) || 0, Y(t) && (s = !!t.leading, f = "maxWait" in t, i = f ? se(k(t.maxWait) || 0, n) : i, g = "trailing" in t ? !!t.trailing : g);
-  function x(d) {
-    var y = r, M = u;
-    return r = u = void 0, o = d, c = e.apply(M, y), c;
+  function M(d) {
+    var y = r, x = u;
+    return r = u = void 0, o = d, c = e.apply(x, y), c;
   }
   function m(d) {
-    return o = d, l = setTimeout(b, n), s ? x(d) : c;
+    return o = d, l = setTimeout(b, n), s ? M(d) : c;
   }
   function v(d) {
-    var y = d - a, M = d - o, S = n - y;
-    return f ? ce(S, i - M) : S;
+    var y = d - a, x = d - o, S = n - y;
+    return f ? ce(S, i - x) : S;
   }
   function h(d) {
-    var y = d - a, M = d - o;
-    return a === void 0 || y >= n || y < 0 || f && M >= i;
+    var y = d - a, x = d - o;
+    return a === void 0 || y >= n || y < 0 || f && x >= i;
   }
   function b() {
     var d = O();
@@ -33,7 +33,7 @@ function le(e, n, t) {
     l = setTimeout(b, v(d));
   }
   function X(d) {
-    return l = void 0, g && r ? x(d) : (r = u = void 0, c);
+    return l = void 0, g && r ? M(d) : (r = u = void 0, c);
   }
   function D() {
     l !== void 0 && clearTimeout(l), o = 0, r = a = u = l = void 0;
@@ -47,7 +47,7 @@ function le(e, n, t) {
       if (l === void 0)
         return m(a);
       if (f)
-        return l = setTimeout(b, n), x(a);
+        return l = setTimeout(b, n), M(a);
     }
     return l === void 0 && (l = setTimeout(b, n)), c;
   }
@@ -56,7 +56,7 @@ function le(e, n, t) {
 function ue(e, n, t) {
   var r = !0, u = !0;
   if (typeof e != "function")
-    throw new TypeError(p);
+    throw new TypeError(H);
   return Y(t) && (r = "leading" in t ? !!t.leading : r, u = "trailing" in t ? !!t.trailing : u), le(e, n, {
     leading: r,
     maxWait: n,
@@ -132,7 +132,7 @@ const ve = /* @__PURE__ */ q(me), W = (e, n, t) => t && e > t ? t : n && e < n ?
     y: a,
     target: e
   };
-}, xe = ({
+}, Me = ({
   event: e,
   target: n
 }) => {
@@ -144,7 +144,7 @@ const ve = /* @__PURE__ */ q(me), W = (e, n, t) => t && e > t ? t : n && e < n ?
     y: r,
     target: n
   };
-}, Me = (e) => {
+}, xe = (e) => {
   const n = (e.left - window.innerWidth) / (e.width + window.innerWidth), t = (e.top - window.innerHeight) / (e.height + window.innerHeight);
   return { x: n, y: t, target: e };
 }, Xe = /* @__PURE__ */ B({
@@ -180,12 +180,12 @@ const ve = /* @__PURE__ */ q(me), W = (e, n, t) => t && e > t ? t : n && e < n ?
           type: c.move
         },
         scroll: {
-          action: (v) => Me(v),
+          action: (v) => xe(v),
           condition: !!((m = t.value) != null && m.height),
           type: c.scroll
         },
         orientation: {
-          action: (v, h) => xe({
+          action: (v, h) => Me({
             target: v,
             event: h
           }),
@@ -210,11 +210,11 @@ const ve = /* @__PURE__ */ q(me), W = (e, n, t) => t && e > t ? t : n && e < n ?
     }, 100), g = () => {
       const m = c[e.event];
       m && window.addEventListener(m, f, !0);
-    }, x = () => {
+    }, M = () => {
       const m = c[e.event];
       m && window.removeEventListener(m, f, !0);
     };
-    return K(g), N(x), V(
+    return K(g), N(M), V(
       "context",
       z(
         G({
@@ -227,16 +227,16 @@ const ve = /* @__PURE__ */ q(me), W = (e, n, t) => t && e > t ? t : n && e < n ?
           shape: t
         })
       )
-    ), (m, v) => (A(), L("div", {
+    ), (m, v) => (p(), A("div", {
       ref_key: "container",
       ref: n,
-      style: R({ perspective: `${m.perspective}px` }),
+      style: L(m.perspective ? { perspective: `${m.perspective}px` } : void 0),
       onMousemove: v[0] || (v[0] = //@ts-ignore
       (...h) => P(f) && P(f)(...h)),
       onMouseenter: o,
       onMouseleave: s
     }, [
-      H(m.$slots, "default")
+      R(m.$slots, "default")
     ], 36));
   }
 }), Ee = (e, n, t) => {
@@ -312,13 +312,13 @@ const ve = /* @__PURE__ */ q(me), W = (e, n, t) => t && e > t ? t : n && e < n ?
       transitionDuration: `${(i == null ? void 0 : i.duration) ?? 0}ms`,
       transitionTimingFunction: (i == null ? void 0 : i.easing) ?? "linear"
     }));
-    return (o, s) => (A(), L("div", {
-      style: R({
+    return (o, s) => (p(), A("div", {
+      style: L({
         ...l.value,
         ...a.value
       })
     }, [
-      H(o.$slots, "default")
+      R(o.$slots, "default")
     ], 4));
   }
 }), je = {
