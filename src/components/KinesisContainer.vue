@@ -2,16 +2,14 @@
 import { ref, provide, reactive, onMounted, onBeforeUnmount, readonly, computed } from 'vue';
 import throttle from 'lodash.throttle';
 import { type Context, type ElementRect } from '../models';
-import { mouseMovement, scrollMovement, orientationElement, inViewport, isTouch } from '../utils';
+import { mouseMovement, inViewport, isTouch } from '../utils';
 
 const {
-  event = 'move',
   disabled = false,
   duration = 1000,
   easing = 'cubic-bezier(0.23, 1, 0.32, 1)',
   perspective = 1000,
 } = defineProps<{
-  event?: 'move' | 'scroll' | 'orientation';
   disabled?: boolean;
   duration?: number;
   easing?: string;
@@ -33,32 +31,13 @@ const movement = ref({
   x: 1,
   y: 1,
 });
-const eventMap = {
-  orientation: 'deviceorientation' as const,
-  scroll: 'scroll' as const,
-  move: isTouch() ? ('deviceorientation' as const) : null,
-};
 const eventData = ref();
-
+const _isTouch = isTouch();
 const eventActions = computed(() => ({
   move: {
     action: (target: ElementRect, event: MouseEvent) => mouseMovement({ target, event }),
-    condition: isMoving.value && !isTouch(),
-    type: eventMap.move,
-  },
-  scroll: {
-    action: (target: ElementRect) => scrollMovement(target),
-    condition: !!shape.value?.height,
-    type: eventMap.scroll,
-  },
-  orientation: {
-    action: (target: ElementRect, event: MouseEvent) =>
-      orientationElement({
-        target,
-        event: event as unknown as DeviceOrientationEvent,
-      }),
-    condition: event === 'move' && isTouch(),
-    type: eventMap.orientation,
+    condition: isMoving.value && !_isTouch,
+    type: _isTouch ? ('deviceorientation' as const) : null,
   },
 }));
 
@@ -94,8 +73,8 @@ const handleMovement = throttle((e: Event) => {
   shape.value = container.value.getBoundingClientRect();
 
   const isInViewport = inViewport(shape.value);
-  const eventCondition = eventActions.value[event].condition;
-  const eventAction = eventActions.value[event].action;
+  const eventCondition = eventActions.value.move.condition;
+  const eventAction = eventActions.value.move.action;
 
   if (isInViewport && eventCondition) {
     movement.value = eventAction(shape.value, mouseEvent);
@@ -108,17 +87,13 @@ const handleMovement = throttle((e: Event) => {
 }, 100);
 
 const addEvents = () => {
-  const e = eventMap[event];
-
-  if (e) {
-    window.addEventListener(e, handleMovement, true);
+  if (_isTouch) {
+    window.addEventListener('deviceorientation', handleMovement, true);
   }
 };
 const removeEvents = () => {
-  const e = eventMap[event];
-
-  if (e) {
-    window.removeEventListener(e, handleMovement, true);
+  if (_isTouch) {
+    window.removeEventListener('deviceorientation', handleMovement, true);
   }
 };
 
@@ -131,7 +106,6 @@ provide<Context>(
     reactive({
       duration,
       easing,
-      event,
       eventData,
       isMoving,
       movement,

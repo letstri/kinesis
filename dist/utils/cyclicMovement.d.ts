@@ -9,7 +9,6 @@ export declare const cyclicMovement: (cycleData: {
         top: number;
         left: number;
     };
-    event: string;
     cycles: number;
     strength: number;
 }) => {

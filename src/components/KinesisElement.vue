@@ -42,7 +42,7 @@ const strengthManager = computed(() =>
 );
 
 const transform = computed(() => {
-  if (!context || !context.shape || (!context.isMoving && context.event === 'move')) {
+  if (!context || !context.shape || !context.isMoving) {
     return {};
   }
 
@@ -56,30 +56,20 @@ const transform = computed(() => {
           originX,
           originY,
           strength: strengthManager.value,
-          event: context.event,
           minX,
           minY,
           maxX,
           maxY,
         })
       : cyclicMovement({
-          referencePosition: context.event === 'scroll' ? { x: 0, y: 0 } : context.eventData,
+          referencePosition: context.eventData,
           shape: context.shape,
-          event: context.event,
           cycles,
           strength: strengthManager.value,
         });
 
-  if (context.event !== 'scroll') {
-    movementX = axis === 'y' ? 0 : x;
-    movementY = axis === 'x' ? 0 : y;
-  } else if (context.event === 'scroll') {
-    movementX = axis === 'x' ? y : 0;
-    movementY = axis === 'y' || !axis ? y : 0;
-  } else if (cycles > 0) {
-    movementX = axis === 'x' ? x : 0;
-    movementY = axis === 'y' ? y : 0;
-  }
+  movementX = axis === 'y' ? 0 : x;
+  movementY = axis === 'x' ? 0 : y;
 
   return {
     transform: transformSwitch(type, movementX, movementY, strength),
@@ -87,7 +77,6 @@ const transform = computed(() => {
 });
 const transformParameters = computed<CSSProperties>(() => ({
   transformOrigin,
-  willChange: 'transform',
   transitionProperty: 'transform',
   transitionDuration: `${context?.duration ?? 0}ms`,
   transitionTimingFunction: context?.easing ?? 'linear',
